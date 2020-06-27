@@ -9,9 +9,10 @@ const RadiosWrap = styled.div`
 const RadioWrap = styled.div`
 	position: relative;
 	line-height: 30px;
-	width: 80px;
+	width: 30px;
 	height: 30px;
 	margin: 0 10px;
+	font-size: 11px;
 	input[type='radio'] {
 		line-height: 30px;
 		margin: 0 10px;
@@ -35,8 +36,8 @@ const RadioWrap = styled.div`
 		position: absolute;
 		content: '';
 		width: 100%;
-		height: 2px;
-		bottom: 0px;
+		height: 1px;
+		bottom: 9px;
 		background: #000;
 		left: 0px;
 	}

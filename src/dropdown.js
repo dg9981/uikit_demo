@@ -8,6 +8,7 @@ const DropMenu = styled.div`
 	justify-content: center;
 	align-items: center;
 	position: relative;
+	padding: 10px;
 	&:hover{
 		div{
 			display: inline-flex;
@@ -22,7 +23,13 @@ const Menu = styled.div`
 	position: absolute;
 	top: 30px;
 	background: #fff;
+	width: 100%;
+	line-height: 55px;
+	align-items: center;
 	display:none;
+	>a{
+		font-weight: 500;
+	}
 `;
 function Dropdown(props){
 	return(

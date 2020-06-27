@@ -7,6 +7,7 @@ import Radios from "./src/radios";
 import Checkbox from "./src/checkbox";
 import Panel from "./src/panel";
 import Dropdown from "./src/dropdown";
+import List from "./src/list";
 export {
 	TextBtn,
 	TitleBtn,
@@ -17,4 +18,5 @@ export {
 	Checkbox,
 	Panel,
 	Dropdown,
+	List
 };

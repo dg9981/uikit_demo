@@ -4,15 +4,18 @@ import styled from "styled-components";
 const CheckboxWrap = styled.div`
 	user-select: none;
 	display: flex;
-
+	font-size: 11px;
 `;
 const CheckItemWrap = styled.div`
 	line-height: 30px;
 	height: 30px;
 	margin: 0 10px;
+	display: flex;
+	align-items: center;
 	input[type='checkbox'] {
 		line-height: 30px;
 		margin: 0 10px;
+		margin-top: -2px;
 	}
 `;
 
@@ -50,6 +53,13 @@ class CheckItem extends React.Component {
 
 function Checkbox(props){
 	const { children, name, value, onChange } = props;
+	if(!Array.isArray(children)){
+		return (
+			<CheckboxWrap>
+				<CheckItem key={children.props.value} name={name} onChange={onChange} selectValue={value} {...children.props}></CheckItem>
+			</CheckboxWrap>
+		)
+	}
 	return (
 		<CheckboxWrap>
 			{

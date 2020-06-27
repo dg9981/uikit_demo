@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from "styled-components";
 
 const Button = styled.a`
-    cursor: pointer;
+    cursor:  ${props => props.disabled ? "default" : "pointer"};
 	user-select: none;
 	white-space: nowrap;
-	margin: 10px;
+	/* margin-right: 25px; */
+	font-size: 11px;
+	color: ${props => props.disabled ? "#ccc" : "#000"};
 	:hover{
-		text-decoration-line: underline;
+		text-decoration:  ${props => props.disabled ? "none" : "underline"};
 	}
 	:visited{
 		text-decoration: none;
@@ -21,27 +23,39 @@ const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
 function isString(){
   return typeof str === 'string';
 }
-var TextButton = function(props){
-	let children = props.children;
-	const needInserted = isTwoCNChar(children);
-	if(children == null) {
-		return <Button></Button>;
+class TextButton extends React.Component {
+	constructor(props){
+		super(props);
 	}
-	const SPACE = needInserted ? ' ' : '';
-	if(typeof children === 'string') {
-		if(needInserted){
-			children = children.split('').join(SPACE);
+	onClick(ev){
+		const { onClick } = this.props;
+		if (onClick) {
+			onClick(ev);
 		}
-		<Button>{children}</Button>
 	}
-	else{
-		console.log("TitleButton:请输入字符串");
-		return <Button></Button>
-		
+	render(){
+		const { onClick } = this.props;
+		let children = this.props.children;
+		const needInserted = isTwoCNChar(children);
+		if(children == null) {
+			return <Button></Button>;
+		}
+		const SPACE = needInserted ? ' ' : '';
+		if(typeof children === 'string') {
+			// if(needInserted){
+			// 	children = children.split('').join(SPACE);
+			// }
+			<Button>{children}</Button>
+		}
+		else{
+			console.log("TitleButton:请输入字符串");
+			return <Button></Button>
+			
+		}
+		return (
+			<Button disabled={this.props.disabled} onClick={(e) => { this.onClick(e) }}>{children}</Button>
+		)
 	}
-	return (
-		<Button>{children}</Button>
-	)
 }
 export default TextButton;
 

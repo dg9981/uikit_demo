@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from "styled-components";
 
-const Button = styled.h1`
+const Button = styled.h2`
 	cursor: pointer;
 	color: #000;
 	display: inline-block;
 	user-select: none;
 	white-space: nowrap;
 	margin: 10px;
+	font-weight: 500;
+	height: 55px;
+	line-height: 55px;
 `;
 //* 组件逻辑的一些辅助常量 */
 const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
