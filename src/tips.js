@@ -6,6 +6,9 @@ const Tip = styled.div`
 	background: #e8e8e8;
 	padding: 0.5em;
 	text-align: center;
+	font-size: 11px;
+	height: 44px;
+	line-height:44px;
 `;
 function Tips(props){
 	const { children } = props;

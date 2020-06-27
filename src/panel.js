@@ -7,7 +7,8 @@ class Modal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.el = document.createElement("div");
-		this.el.style.cssText = `position:absolute;border:1px solid #000; background: #fff; width: ${props.width}px; z-index:999; left: 67px; top: 52px;`;
+		this.el.setAttribute("id", props.id);
+		this.el.style.cssText = `position:absolute;border:1px solid #000; background: #fff; width: ${props.width}px; z-index:999; left: 67px; top: ${props.top}px;`;
 	}
 	
 	componentDidMount() {
@@ -21,6 +22,7 @@ class Modal extends React.Component {
 	render(){
 		const display = this.props.visible ? "block" : "none";
 		this.el.style.display = display;
+		this.el.style.top = this.props.top + "px";
 		return ReactDOM.createPortal(
 			this.props.children,
 			this.el

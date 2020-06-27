@@ -23,7 +23,7 @@ const Menu = styled.div`
 	position: absolute;
 	top: 30px;
 	background: #fff;
-	width: 100%;
+	padding: 0 20px;
 	line-height: 55px;
 	align-items: center;
 	display:none;

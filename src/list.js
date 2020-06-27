@@ -22,22 +22,22 @@ const Title = styled.div`
 `;
 
 function List(props){
-	const { dataSource } = props;
+	const { dataSource, searchVal } = props;
 	return (
 		<Fragment>
 			<Title>DESIGNERS</Title>
 			<ListUl>
 				{
-					dataSource.map((child) => 
-						<li>111</li>
+					dataSource.DESIGNERS.map((child) => 
+						<li key={child}>{searchVal}{child}</li>
 					)
 				}
 			</ListUl>
 			<Title>SUGGESTED CATEGORIES</Title>
 			<ListUl>
 				{
-					dataSource.map((child) => 
-						<li>222</li>
+					dataSource.SUGGESTED.map((child) => 
+						<li key={child}>{searchVal}{child}</li>
 					)
 				}
 			</ListUl>

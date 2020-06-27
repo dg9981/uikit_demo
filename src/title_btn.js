@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from "styled-components";
 
 const Button = styled.h2`
@@ -17,29 +17,44 @@ const rxTwoCNChar = /^[\u4e00-\u9fa5]{2}$/;
 
 /* 判断是否为两个中文字符*/
 const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
-function isString(){
-  return typeof str === 'string';
-}
-function TitleButton(props){
-	let children = props.children;
-	const needInserted = isTwoCNChar(children);
-	if(children == null) {
-		return <Button></Button>;
+
+class TitleButton extends Component{
+	constructor(props){
+		super(props);
 	}
-	const SPACE = needInserted ? ' ' : '';
-	if(typeof children === 'string') {
-		if(needInserted){
-			children = children.split('').join(SPACE);
+	onClick(ev){
+		const { onClick } = this.props;
+		if (onClick) {
+			onClick(ev);
 		}
-		<Button>{children}</Button>
 	}
-	else{
-		console.log("TitleButton:请输入字符串");
-		return <Button></Button>
-		
+	render(){
+		let props = this.props;
+		let children = props.children;
+		const needInserted = isTwoCNChar(children);
+		function onClick(e, props){
+			if(props.onClick){
+				onClick(e);
+			}
+		}
+		if(children == null) {
+			return <Button></Button>;
+		}
+		const SPACE = needInserted ? ' ' : '';
+		if(typeof children === 'string') {
+			if(needInserted){
+				children = children.split('').join(SPACE);
+			}
+			<Button onClick={(e) => { this.onClick(e) }}>{children}</Button>
+		}
+		else{
+			console.log("TitleButton:请输入字符串");
+			return <Button></Button>
+			
+		}
+		return (
+			<Button onClick={(e) => { this.onClick(e) }}>{children}</Button>
+		)
 	}
-	return (
-		<Button>{children}</Button>
-	)
 }
 export default TitleButton;

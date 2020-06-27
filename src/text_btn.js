@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 
 const Button = styled.a`
-    cursor:  ${props => props.disabled ? "default" : "pointer"};
+	cursor:  ${props => props.disabled ? "default" : "pointer"};
 	user-select: none;
 	white-space: nowrap;
 	/* margin-right: 25px; */
 	font-size: 11px;
 	color: ${props => props.disabled ? "#ccc" : "#000"};
+	text-decoration: ${props => props.active ? "underline" : "none"};
 	:hover{
 		text-decoration:  ${props => props.disabled ? "none" : "underline"};
 	}
@@ -34,27 +35,26 @@ class TextButton extends React.Component {
 		}
 	}
 	render(){
-		const { onClick } = this.props;
+		const { onClick, id, active} = this.props;
 		let children = this.props.children;
 		const needInserted = isTwoCNChar(children);
 		if(children == null) {
-			return <Button></Button>;
+			return <Button id={id}></Button>;
 		}
 		const SPACE = needInserted ? ' ' : '';
 		if(typeof children === 'string') {
-			// if(needInserted){
-			// 	children = children.split('').join(SPACE);
-			// }
-			<Button>{children}</Button>
+			return <Button
+				id={id}
+				disabled={this.props.disabled}
+				onClick={(e) => { this.onClick(e) }}
+				active={active}
+			>{children}</Button>
 		}
 		else{
 			console.log("TitleButton:请输入字符串");
-			return <Button></Button>
+			return <Button id={id}></Button>
 			
 		}
-		return (
-			<Button disabled={this.props.disabled} onClick={(e) => { this.onClick(e) }}>{children}</Button>
-		)
 	}
 }
 export default TextButton;
